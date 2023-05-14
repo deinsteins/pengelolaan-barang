@@ -28,9 +28,12 @@ export const addBarang = (barang) => async (dispatch) => {
 
 export const editBarang = (id, oldPhoto, barang) => async (dispatch) => {
   try {
-    await deleteFotoBarang(oldPhoto);
-    const newPhoto = barang.foto.name;
-    const fotoBarangUrl = await uploadFotoBarang(barang.foto);
+    let fotoBarangUrl, newPhoto;
+    if (barang.foto) {
+      await deleteFotoBarang(oldPhoto);
+      newPhoto = barang.foto.name;
+      fotoBarangUrl = await uploadFotoBarang(barang.foto);
+    }
     const { data, error } = await supabase
       .from("barang")
       .update({...barang, nama_foto: newPhoto, foto: fotoBarangUrl})

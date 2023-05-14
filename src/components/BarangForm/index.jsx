@@ -9,6 +9,7 @@ import Button from "../Button";
 const BarangForm = ({ barang, closeModal }) => {
   const [fotoBarang, setFotoBarang] = useState('');
   const [error, setError] = useState(null);
+  const [uploadedFile, setUploadedFile] = useState(null);
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     nama: barang ? barang.nama : "",
@@ -23,6 +24,7 @@ const BarangForm = ({ barang, closeModal }) => {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
+    setUploadedFile(file);
     const maxSize = 100 * 1024;
     if (file && file.size > maxSize) {
       setError('File terlalu besar. Maksimum ukuran file adalah 100 KB.');
@@ -37,10 +39,14 @@ const BarangForm = ({ barang, closeModal }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (error) { 
-      alert('File terlalu besar. Maksimum ukuran file adalah 100 KB.')
+      alert('File terlalu besar')
     } else {
       if (barang) {
-        dispatch(editBarang(barang.id, barang.nama_foto, { ...formData, foto: fotoBarang }));
+        if (!uploadedFile) {
+          dispatch(editBarang(barang.id, barang.nama_foto, { ...formData }));
+        } else {
+          dispatch(editBarang(barang.id, barang.nama_foto, { ...formData, foto: fotoBarang }));
+        }
       } else {
         dispatch(addBarang({ ...formData, foto: fotoBarang }));
       }
