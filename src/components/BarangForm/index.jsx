@@ -2,6 +2,7 @@ import { useState } from "react";
 import PropTypes from 'prop-types';
 import { useDispatch } from "react-redux";
 import { addBarang, editBarang } from "../../redux/actions/barangActions";
+import { supabase } from "../../api/suppabase";
 
 import './BarangForm.scss';
 import Button from "../Button";
@@ -17,6 +18,19 @@ const BarangForm = ({ barang, closeModal }) => {
     hargaJual: barang ? barang.hargaJual : "",
     stok: barang ? barang.stok : "",
   });
+
+  const checkExistingBarang = async (namaBarang) => {
+    const { data: barangs, error } = await supabase
+      .from('barang')
+      .select('*')
+      .eq('nama', namaBarang);
+  
+    if (error) {
+      throw error;
+    }
+  
+    return barangs.length > 0;
+  };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -36,11 +50,19 @@ const BarangForm = ({ barang, closeModal }) => {
     setFotoBarang(file);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (error) { 
-      alert('File terlalu besar')
-    } else {
+  const handleSubmit = async(e) => {
+      e.preventDefault();
+      if (error) { 
+        alert('File terlalu besar');
+        return;
+      }
+
+      const existingBarang = await checkExistingBarang(formData.nama);
+      if (existingBarang) {
+        alert('Nama barang sudah ada di database');
+        return;
+      }
+
       if (barang) {
         if (!uploadedFile) {
           dispatch(editBarang(barang.id, barang.nama_foto, { ...formData }));
@@ -51,7 +73,6 @@ const BarangForm = ({ barang, closeModal }) => {
         dispatch(addBarang({ ...formData, foto: fotoBarang }));
       }
       closeModal();
-    }
   };
 
   return (
