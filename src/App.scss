@@ -1,0 +1,73 @@
+@use "./scss/" as *;
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&display=swap");
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    font-size: 100%;
+
+    @include tablet {
+        font-size: 80%;
+    }
+
+    @include mobile {
+        font-size: 60%;
+    }
+}
+
+body, #root {
+    font-family: $font-family;
+    font-weight: 400;
+    line-height: 1.5;
+
+    background-color: $body-bg;
+    color: $txt-color;
+
+    min-height: 100vh;
+
+    @include mobile {
+        margin-bottom: 3rem;
+    }
+}
+
+.App {
+    display: flex;
+    padding: 4rem;
+    min-height: 100vh;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: $table-bg-color;
+  border: 1px solid $table-border-color;
+  font-size: 14px;
+  color: #333;
+
+  th,
+  td {
+    border: 1px solid $table-border-color;
+    padding: 10px;
+    text-align: left;
+  }
+
+  th {
+    background-color: $table-hover-bg-color;
+    font-weight: bold;
+  }
+
+  tbody tr:hover {
+    background-color: $table-hover-bg-color;
+    cursor: pointer;
+  }
+
+  tbody tr td:last-child {
+    text-align: right;
+  }
+}

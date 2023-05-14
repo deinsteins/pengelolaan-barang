@@ -1,0 +1,117 @@
+$primary-color: #007bff;
+$secondary-color: #6c757d;
+$success-color: #28a745;
+$danger-color: #dc3545;
+$warning-color: #ffc107;
+$dark-color: #343a40;
+$light-color: #f8f9fa;
+
+.btn {
+  border: none;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &.primary {
+    background-color: $primary-color;
+    color: $light-color;
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+
+  &.secondary {
+    background-color: $secondary-color;
+    color: $light-color;
+
+    &:hover {
+      background-color: darken($secondary-color, 10%);
+    }
+  }
+
+  &.success {
+    background-color: $success-color;
+    color: $light-color;
+
+    &:hover {
+      background-color: darken($success-color, 10%);
+    }
+  }
+
+  &.danger {
+    background-color: $danger-color;
+    color: $light-color;
+
+    &:hover {
+      background-color: darken($danger-color, 10%);
+    }
+  }
+
+  &.warning {
+    background-color: $warning-color;
+    color: $dark-color;
+
+    &:hover {
+      background-color: darken($warning-color, 10%);
+    }
+  }
+
+  &.dark {
+    background-color: $dark-color;
+    color: $light-color;
+
+    &:hover {
+      background-color: darken($dark-color, 10%);
+    }
+  }
+
+  &.light {
+    background-color: $light-color;
+    color: $dark-color;
+
+    &:hover {
+      background-color: darken($light-color, 10%);
+    }
+  }
+
+  &.small {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  &.medium {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+
+  &.large {
+    padding: 1rem 2rem;
+    font-size: 1.25rem;
+  }
+
+  &.outlined {
+    background-color: transparent;
+    border: 1px solid currentColor;
+    color: currentColor;
+
+    &:hover {
+      background-color: currentColor;
+      color: $light-color;
+    }
+  }
+
+  &.filled {
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}

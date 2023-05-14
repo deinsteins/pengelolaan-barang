@@ -1,0 +1,52 @@
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5rem;
+    
+    div {
+      display: flex;
+      flex-direction: column;
+      min-width: 298px;
+  
+      label {
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+  
+      input {
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+        width: 100%;
+  
+        &:focus {
+          outline: none;
+          box-shadow: 0 0 5px #ccc;
+        }
+      }
+  
+      .error {
+        color: red;
+        font-size: 14px;
+        margin-top: 5px;
+      }
+    }
+  
+    button[type="submit"] {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+  
+      &:hover {
+        background-color: #0056b3;
+      }
+    }
+  }
+  
