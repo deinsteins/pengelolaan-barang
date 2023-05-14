@@ -16,7 +16,7 @@ export const addBarang = (barang) => async (dispatch) => {
   try {
     const fotoBarangUrl = await uploadFotoBarang(barang.foto);
     const namaFoto = barang.foto.name;
-    const { data, error } = await supabase.from('barang').insert({ ...barang, nama_foto: namaFoto, foto: fotoBarangUrl });
+    const { data, error } = await supabase.from('barang').insert({ ...barang, nama_foto: namaFoto, foto: fotoBarangUrl }).select('*');
     if (error) {
       throw error;
     }
