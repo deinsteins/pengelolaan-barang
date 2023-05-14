@@ -2,7 +2,7 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 import BarangList from "./components/BarangList";
 
-import './App.scss';
+import './main.scss';
 
 const App = () => {
   return (

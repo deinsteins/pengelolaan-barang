@@ -5,6 +5,7 @@ import BarangForm from "../BarangForm";
 import Pagination from "../Pagination";
 import SearchBar from "../SearchBar";
 import './BarangList.scss';
+import './Modal.scss';
 import Button from "../Button";
 
 const BarangList = () => {
