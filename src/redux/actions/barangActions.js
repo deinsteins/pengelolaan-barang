@@ -34,7 +34,8 @@ export const editBarang = (id, oldPhoto, barang) => async (dispatch) => {
     const { data, error } = await supabase
       .from("barang")
       .update({...barang, nama_foto: newPhoto, foto: fotoBarangUrl})
-      .eq("id", id);
+      .eq("id", id)
+      .select('*');
     if (error) {
       throw error;
     }
